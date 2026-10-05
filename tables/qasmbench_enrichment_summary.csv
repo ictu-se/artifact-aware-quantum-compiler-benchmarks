@@ -1,0 +1,11 @@
+metric,value
+qasmbench_inventory_rows,254
+unique_raw_match_keys,141
+ambiguous_raw_match_keys,1
+benchpress_rows,12318
+benchpress_ambiguous_key_rows,48
+benchpress_ambiguous_key_pct,0.39
+benchpress_matched_exact_unique_rows,5794
+benchpress_matched_exact_unique_pct,47.04
+benchpress_unmatched_rows,6476
+benchpress_unmatched_pct,52.57

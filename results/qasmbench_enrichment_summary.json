@@ -1,0 +1,46 @@
+{
+  "qasmbench_inventory_rows": 254,
+  "benchpress_enriched_rows": 12318,
+  "summary": [
+    {
+      "metric": "qasmbench_inventory_rows",
+      "value": "254"
+    },
+    {
+      "metric": "unique_raw_match_keys",
+      "value": "141"
+    },
+    {
+      "metric": "ambiguous_raw_match_keys",
+      "value": "1"
+    },
+    {
+      "metric": "benchpress_rows",
+      "value": "12318"
+    },
+    {
+      "metric": "benchpress_ambiguous_key_rows",
+      "value": "48"
+    },
+    {
+      "metric": "benchpress_ambiguous_key_pct",
+      "value": "0.39"
+    },
+    {
+      "metric": "benchpress_matched_exact_unique_rows",
+      "value": "5794"
+    },
+    {
+      "metric": "benchpress_matched_exact_unique_pct",
+      "value": "47.04"
+    },
+    {
+      "metric": "benchpress_unmatched_rows",
+      "value": "6476"
+    },
+    {
+      "metric": "benchpress_unmatched_pct",
+      "value": "52.57"
+    }
+  ]
+}

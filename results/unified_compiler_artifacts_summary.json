@@ -1,0 +1,14 @@
+{
+  "rows": 15652,
+  "benchpress_attempt_rows": 12652,
+  "benchpress_passed_rows": 12318,
+  "benchpress_failed_rows": 70,
+  "benchpress_xfailed_rows": 0,
+  "benchpress_skipped_rows": 264,
+  "qiskit_metriq_rows": 3000,
+  "workload_id_collision_rows": 0,
+  "source_commits": {
+    "benchpress_public": "58b52b17fcf4e0ebb9c2a9afc56b89fc8a89c39f",
+    "qiskit_metriq": "a79d8a66d19e8b7a4e5035f32004017252c06cfa"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "hash_algorithm": "SHA-256",
+  "sources": [
+    {
+      "source": "benchpress_public",
+      "repo_url": "https://github.com/Qiskit/benchpress",
+      "commit": "58b52b17fcf4e0ebb9c2a9afc56b89fc8a89c39f",
+      "license": "No LICENSE file is present in the pinned data-only commit; redistribution terms must be checked with the upstream repository owner.",
+      "inclusion": "All Benchpress v1 transpilation pytest-benchmark JSON artifacts.",
+      "file_count": 16
+    },
+    {
+      "source": "qiskit_metriq",
+      "repo_url": "https://github.com/qiskit-community/qiskit-metriq",
+      "commit": "a79d8a66d19e8b7a4e5035f32004017252c06cfa",
+      "license": "Apache-2.0",
+      "inclusion": "All 30 CSV result files in benchmarking/results; one circuit, optimization level 3.",
+      "file_count": 30
+    },
+    {
+      "source": "qasmbench",
+      "repo_url": "https://github.com/pnnl/QASMBench",
+      "commit": "357b942396d5c2b7cbc1c229c585a6ef5ccaebac",
+      "license": "Battelle redistribution license in repository LICENSE",
+      "inclusion": "All QASM/QASM3 files for exact-key sidecar enrichment only.",
+      "file_count": 254
+    }
+  ],
+  "file_manifest": "data/source_file_manifest.csv",
+  "file_count": 300
+}

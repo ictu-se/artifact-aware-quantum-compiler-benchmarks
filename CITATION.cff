@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "Please cite the accompanying manuscript and upstream benchmark resources."
+title: "Artifact-Aware Performance Analysis of Quantum Compiler Benchmarks Across SDK Versions and Topologies"
+type: software
+version: 1.0.0
+date-released: 2026-10-05
+authors:
+  - family-names: Nguyen
+    given-names: The-Vinh
+    affiliation: Thai Nguyen University of Information and Communication Technology
+    email: vinhnt@ictu.edu.vn
+repository-code: "https://github.com/ictu-se/artifact-aware-quantum-compiler-benchmarks"
+license: MIT

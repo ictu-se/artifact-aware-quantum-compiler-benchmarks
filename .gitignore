@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+data/benchpress_public/
+data/qiskit_metriq/
+data/qasmbench/
+*.aux
+*.log
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+verification/*.log
+.DS_Store
