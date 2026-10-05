@@ -17,7 +17,7 @@ python -m pip install -r requirements.txt
 
 The first command in the workflow downloads approximately 544 MB across 300 upstream files. Every file is checked against the committed SHA-256 manifest. Downloaded source files are cached under `data/` and excluded from Git. Derived data, analysis tables, vector figures, and table fragments are versioned in this repository.
 
-`verification/validation.json` records the scientific checks and environment. `manuscript_assets/` contains publication assets, including native editable tables. `requirements-lock.txt` records the full tested dependency environment; `requirements.txt` pins the direct dependencies.
+`verification/independent_reproduction.json` records a clean-checkout reproduction: 39 tables, the unified result table, and all nine manuscript assets match byte-for-byte. `verification/validation.json` records the scientific checks and environment. `manuscript_assets/` contains publication assets, including native editable tables. `requirements-lock.txt` records the full tested dependency environment; `requirements.txt` pins the direct dependencies.
 
 ## Sources and provenance
 

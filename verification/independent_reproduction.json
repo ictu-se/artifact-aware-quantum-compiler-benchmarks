@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "tested_commit": "3f97ef8a966aaf8ef6f9c1bc2e7de6c77cebbcb5",
+  "fresh_python_environment": "3.11.15",
+  "source_acquisition": "All 300 upstream originals downloaded and hash-verified; final clean clone used a verified cache of those downloads.",
+  "identical_regenerated_file_counts": {
+    "tables": 39,
+    "results": 1,
+    "manuscript_assets": 9
+  },
+  "scientific_checks_passed": 11,
+  "source_zip_build": "PASS; extracted package builds a 22-page PDF with identical page text.",
+  "pdf_sha256": "694f11206117238376c200af1f24aef581b479ba8f34a5a747230325f249dd1d"
+}
