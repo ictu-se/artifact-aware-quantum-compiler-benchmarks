@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "downloaded_upstream_files": 300,
+  "total_upstream_bytes": 544304249,
+  "normalized_content_equal_to_historical_working_copy": true,
+  "note": "Byte hashes now match upstream originals. Upstream sources contain a mixture of LF and CRLF files; no blanket normalization is applied."
+}

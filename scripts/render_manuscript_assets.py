@@ -7,7 +7,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from packaging.version import Version
 R=Path(__file__).resolve().parents[1];T=R/'tables';O=R/'manuscript_assets';O.mkdir(exist_ok=True)
-plt.rcParams.update({'font.size':10,'axes.labelsize':10,'xtick.labelsize':10,'ytick.labelsize':10,'legend.fontsize':10,'pdf.fonttype':42,'figure.dpi':160})
+plt.rcParams.update({'axes.labelsize':'medium','xtick.labelsize':'medium','ytick.labelsize':'medium','legend.fontsize':'medium','pdf.fonttype':42,'figure.dpi':160})
 BLUE='#2166ac';ORANGE='#d97706';GREEN='#21855b'
 def read(n):return pd.read_csv(T/(n+'.csv'))
 def esc(s):return str(s).replace('_',r'\_').replace('%',r'\%').replace('&',r'\&')
@@ -17,7 +17,7 @@ def table(name,caption,headers,rows,spec=None):
  text='\\par\\begin{center}\\begin{minipage}{\\linewidth}\\def\\@captype{table}\n\\centering\n\\caption{'+caption+'}\n\\label{tab:'+name+'}\n\\begin{tabular}{'+spec+'}\n\\toprule\n'+' & '.join(headers)+r' \\'+'\n\\midrule\n'
  text+='\n'.join(' & '.join(map(str,r))+r' \\' for r in rows)+'\n\\bottomrule\n\\end{tabular}\n\\end{minipage}\\end{center}\\par\n'
  (O/('table_'+name+'.tex')).write_text(text)
-def save(fig,name):fig.savefig(O/(name+'.pdf'),bbox_inches='tight',pad_inches=.06);plt.close(fig)
+def save(fig,name):fig.savefig(O/(name+'.pdf'),bbox_inches='tight',pad_inches=.06,metadata={'CreationDate':None,'ModDate':None});plt.close(fig)
 b=read('benchpress_sdk_version_distribution');b=b.sort_values(['sdk'],kind='stable');b=b.iloc[sorted(range(len(b)),key=lambda i:(b.iloc[i].sdk,Version(b.iloc[i].sdk_version)))].reset_index(drop=True)
 rows=[]
 for _,r in b.iterrows():rows.append([esc(r.sdk+' '+r.sdk_version),f'{int(r.n):,}',f(r.runtime_mean_s_mean,3),f(r.runtime_mean_s_median,3),f(r.runtime_mean_s_p95,3)])
@@ -56,5 +56,5 @@ c=read('cross_sdk_descriptive_summary');fig,axs=plt.subplots(2,1,figsize=(4.65,3
 for ax,metric,title in zip(axs,['runtime','depth'],['Runtime ratio','Two-qubit depth ratio']):
  vals=c[f'{metric}_ratio_median_vs_qiskit'];lo=c[f'{metric}_ratio_q25'];hi=c[f'{metric}_ratio_q75'];ax.errorbar(vals,range(2),xerr=np.array([vals-lo,hi-vals]),fmt='o',color=BLUE,capsize=4);ax.set_yticks(range(2),['QPanda 0.3.2','TKET 2.6.0']);ax.invert_yaxis();ax.axvline(1,color='#666',ls='--');ax.set_xlabel(title+' relative to Qiskit 2.5.0rc1');ax.grid(axis='x',alpha=.15)
 axs[0].set_xscale('log');save(fig,'cross_sdk')
-meta={'top40_rows':len(top),'top40_groups':int(top.groupby(['sdk','sdk_version','benchmark_family','topology']).ngroups),'top6_all_tket':bool((show.sdk=='tket').all()),'qiskit_clusters':read('benchpress_qiskit_first_last_deltas').circuit_base.nunique(),'bootstrap_iterations':2000,'bootstrap_seed':20260716,'figure_font_size':10,'plot_nominal_width_inches':4.65}
+meta={'top40_rows':len(top),'top40_groups':int(top.groupby(['sdk','sdk_version','benchmark_family','topology']).ngroups),'top6_all_tket':bool((show.sdk=='tket').all()),'qiskit_clusters':read('benchpress_qiskit_first_last_deltas').circuit_base.nunique(),'bootstrap_iterations':2000,'bootstrap_seed':20260716,'figure_font_size':plt.rcParams['font.size'],'plot_nominal_width_inches':4.65}
 (R/'verification/presentation_metadata.json').write_text(json.dumps(meta,indent=2)+'\n');print(meta)

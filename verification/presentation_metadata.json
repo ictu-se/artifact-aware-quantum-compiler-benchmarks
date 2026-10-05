@@ -5,6 +5,6 @@
   "qiskit_clusters": 363,
   "bootstrap_iterations": 2000,
   "bootstrap_seed": 20260716,
-  "figure_font_size": 10,
+  "figure_font_size": 10.0,
   "plot_nominal_width_inches": 4.65
 }
