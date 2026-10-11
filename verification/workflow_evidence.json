@@ -1,0 +1,28 @@
+{
+  "input_files": {
+    "benchpress_public": 16,
+    "qiskit_metriq": 30,
+    "qasmbench": 254
+  },
+  "outcomes": {
+    "benchpress_public": 12652,
+    "qiskit_metriq": 3000
+  },
+  "successful_outcomes": {
+    "benchpress_public": 12318,
+    "qiskit_metriq": 3000
+  },
+  "comparison_support": {
+    "Qiskit endpoints": 1032,
+    "Adjacent versions": 9288,
+    "Topology cells": 7977,
+    "Cross-SDK cells": 928,
+    "Historical seed pairs": 200
+  },
+  "enrichment": {
+    "exact_unique": 5794,
+    "ambiguous": 48,
+    "unmatched": 6476
+  },
+  "comparison_subsets_are_not_additive": true
+}

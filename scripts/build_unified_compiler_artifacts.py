@@ -114,14 +114,24 @@ def infer_sdk(path: Path, data: dict) -> tuple[str, str, dict]:
     parts = [part.lower() for part in path.parts]
     if "qiskit" in parts:
         info = data.get("qiskit_info") or {}
-        return "qiskit", canonical_version(info.get("qiskit") or version_from_name(path.name)), info
+        return (
+            "qiskit",
+            canonical_version(info.get("qiskit") or version_from_name(path.name)),
+            info,
+        )
     if "qpanda" in parts:
         info = data.get("qpanda_info") or {}
         return "qpanda", version_from_name(path.name), info
     if "tket" in parts:
         info = data.get("pytket_info") or {}
         match = re.search(r"tket[\\/](\d+\.\d+\.\d+)", str(path).replace("\\", "/"))
-        return "tket", match.group(1) if match else str(info.get("pytket") or version_from_name(path.name)), info
+        return (
+            "tket",
+            match.group(1)
+            if match
+            else str(info.get("pytket") or version_from_name(path.name)),
+            info,
+        )
     return "unknown", version_from_name(path.name), {}
 
 
@@ -154,7 +164,12 @@ def topology_from_benchmark(benchmark: dict, source_file: Path) -> str:
 
 def family_from_values(param: str, name: str, extra: dict | None = None) -> str:
     extra = extra or {}
-    for key in ["ham_category", "ham_primary_type", "benchmark_family", "algorithm_family"]:
+    for key in [
+        "ham_category",
+        "ham_primary_type",
+        "benchmark_family",
+        "algorithm_family",
+    ]:
         if extra.get(key) not in (None, ""):
             return str(extra[key])
     value = param or name
@@ -165,7 +180,9 @@ def family_from_values(param: str, name: str, extra: dict | None = None) -> str:
 def normalize_family(family: str, group: str, param: str) -> str:
     if re.fullmatch(r"\d+", family) and "abstract" in group.lower():
         return f"abstract_qasmbench_{family}q"
-    if re.fullmatch(r"\d+", family) and re.match(r"^\d+-(all-to-all|heavy-hex|square|linear|device|unspecified)$", param):
+    if re.fullmatch(r"\d+", family) and re.match(
+        r"^\d+-(all-to-all|heavy-hex|square|linear|device|unspecified)$", param
+    ):
         return f"abstract_qasmbench_{family}q"
     return family
 
@@ -174,8 +191,18 @@ def normalized_workload_id(fullname: str, name: str, param: str) -> str:
     raw = fullname or name or param
     raw = raw.replace("\\", "/")
     raw = re.sub(r"^(qiskit|tket|qpanda)_gym/", "sdk_gym/", raw)
-    raw = re.sub(r"[-_](all-to-all|heavy-hex|linear|square|device|unspecified)(?=\])", "", raw, flags=re.I)
-    raw = re.sub(r"[-_](all-to-all|heavy-hex|linear|square|device|unspecified)$", "", raw, flags=re.I)
+    raw = re.sub(
+        r"[-_](all-to-all|heavy-hex|linear|square|device|unspecified)(?=\])",
+        "",
+        raw,
+        flags=re.I,
+    )
+    raw = re.sub(
+        r"[-_](all-to-all|heavy-hex|linear|square|device|unspecified)$",
+        "",
+        raw,
+        flags=re.I,
+    )
     return raw
 
 
@@ -186,11 +213,15 @@ def machine_fields(data: dict) -> dict[str, str]:
         "machine_cpu": str(cpu.get("brand_raw") or machine.get("processor") or ""),
         "machine_system": str(machine.get("system") or ""),
         "machine_release": str(machine.get("release") or ""),
-        "python_version": str(machine.get("python_version") or cpu.get("python_version") or ""),
+        "python_version": str(
+            machine.get("python_version") or cpu.get("python_version") or ""
+        ),
     }
 
 
-def base_benchpress_row(path: Path, data: dict, sdk: str, version: str, env: dict) -> dict:
+def base_benchpress_row(
+    path: Path, data: dict, sdk: str, version: str, env: dict
+) -> dict:
     rel = path.relative_to(BENCHPRESS_ROOT).as_posix()
     row = {field: "" for field in FIELDNAMES}
     row.update(
@@ -200,7 +231,9 @@ def base_benchpress_row(path: Path, data: dict, sdk: str, version: str, env: dic
             "source_repo_commit": SOURCE_COMMITS["benchpress_public"],
             "sdk": sdk,
             "sdk_version": version,
-            "compiler_environment": json.dumps(env, sort_keys=True, separators=(",", ":")),
+            "compiler_environment": json.dumps(
+                env, sort_keys=True, separators=(",", ":")
+            ),
             "benchpress_version": str(data.get("version") or ""),
             "run_datetime": str(data.get("datetime") or ""),
             "benchmark_suite": "benchpress",
@@ -251,7 +284,9 @@ def build_benchpress_rows() -> tuple[list[dict], list[dict]]:
                 if "transpile" not in nodeid.lower():
                     continue
                 filtered_counts[status] += 1
-                benchmark = successful_by_fullname.get(nodeid) if status == "passed" else None
+                benchmark = (
+                    successful_by_fullname.get(nodeid) if status == "passed" else None
+                )
                 if benchmark is not None:
                     used_successes.add(nodeid)
                 param = str((benchmark or {}).get("param") or node_param(nodeid))
@@ -260,8 +295,14 @@ def build_benchpress_rows() -> tuple[list[dict], list[dict]]:
                 fullname = str((benchmark or {}).get("fullname") or nodeid)
                 extra = (benchmark or {}).get("extra_info") or {}
                 stats = (benchmark or {}).get("stats") or {}
-                topology = topology_from_benchmark(benchmark, path) if benchmark else topology_from_text(param, nodeid, path)
-                family = normalize_family(family_from_values(param, name, extra), group, param)
+                topology = (
+                    topology_from_benchmark(benchmark, path)
+                    if benchmark
+                    else topology_from_text(param, nodeid, path)
+                )
+                family = normalize_family(
+                    family_from_values(param, name, extra), group, param
+                )
                 artifact_counter += 1
                 row = dict(base)
                 row.update(
@@ -273,13 +314,17 @@ def build_benchpress_rows() -> tuple[list[dict], list[dict]]:
                         "benchmark_family": family,
                         "circuit_name": param,
                         "workload_id_raw": fullname or name or param,
-                        "workload_id_normalized": normalized_workload_id(fullname, name, param),
+                        "workload_id_normalized": normalized_workload_id(
+                            fullname, name, param
+                        ),
                         "topology": topology,
                         "backend_or_device": topology,
                         "input_num_qubits": as_int(extra.get("input_num_qubits")),
                         "output_num_qubits": as_int(extra.get("output_num_qubits")),
                         "output_depth_2q": as_float(extra.get("output_depth_2q")),
-                        "output_gate_count_2q": as_float(extra.get("output_gate_count_2q")),
+                        "output_gate_count_2q": as_float(
+                            extra.get("output_gate_count_2q")
+                        ),
                         "runtime_mean_s": as_float(stats.get("mean")),
                         "runtime_median_s": as_float(stats.get("median")),
                         "runtime_min_s": as_float(stats.get("min")),
@@ -288,8 +333,13 @@ def build_benchpress_rows() -> tuple[list[dict], list[dict]]:
                         "rounds": as_int(stats.get("rounds")),
                         "attempt_duration_s": as_float((outcome or {}).get("duration")),
                         "status": status,
-                        "failure_summary": exception_summary((outcome or {}).get("exception")),
-                        "timeout_flag": "1" if "timeout" in str((outcome or {}).get("exception", "")).lower() else "0",
+                        "failure_summary": exception_summary(
+                            (outcome or {}).get("exception")
+                        ),
+                        "timeout_flag": "1"
+                        if "timeout"
+                        in str((outcome or {}).get("exception", "")).lower()
+                        else "0",
                     }
                 )
                 rows.append(row)
@@ -303,7 +353,9 @@ def build_benchpress_rows() -> tuple[list[dict], list[dict]]:
             extra = benchmark.get("extra_info") or {}
             stats = benchmark.get("stats") or {}
             topology = topology_from_benchmark(benchmark, path)
-            family = normalize_family(family_from_values(param, name, extra), group, param)
+            family = normalize_family(
+                family_from_values(param, name, extra), group, param
+            )
             artifact_counter += 1
             row = dict(base)
             row.update(
@@ -315,7 +367,9 @@ def build_benchpress_rows() -> tuple[list[dict], list[dict]]:
                     "benchmark_family": family,
                     "circuit_name": param,
                     "workload_id_raw": fullname or name or param,
-                    "workload_id_normalized": normalized_workload_id(fullname, name, param),
+                    "workload_id_normalized": normalized_workload_id(
+                        fullname, name, param
+                    ),
                     "topology": topology,
                     "backend_or_device": topology,
                     "input_num_qubits": as_int(extra.get("input_num_qubits")),
@@ -334,7 +388,9 @@ def build_benchpress_rows() -> tuple[list[dict], list[dict]]:
             )
             rows.append(row)
 
-        normalized_counts = Counter(row["status"] for row in rows if row["source_file"] == base["source_file"])
+        normalized_counts = Counter(
+            row["status"] for row in rows if row["source_file"] == base["source_file"]
+        )
         audits.append(
             {
                 "source_file": base["source_file"],
@@ -356,8 +412,14 @@ def build_benchpress_rows() -> tuple[list[dict], list[dict]]:
 
 
 def parse_metriq_filename(path: Path) -> dict:
-    match = re.match(r"(?P<circuit>.+)-qiskit(?P<version>[0-9.]+)-(?P<device>.+)\.csv$", path.name)
-    return match.groupdict() if match else {"circuit": path.stem, "version": "", "device": ""}
+    match = re.match(
+        r"(?P<circuit>.+)-qiskit(?P<version>[0-9.]+)-(?P<device>.+)\.csv$", path.name
+    )
+    return (
+        match.groupdict()
+        if match
+        else {"circuit": path.stem, "version": "", "device": ""}
+    )
 
 
 def build_metriq_rows(start_index: int) -> list[dict]:
@@ -436,9 +498,23 @@ def summarize_groups(rows: list[dict], keys: list[str], out_path: Path) -> None:
                 "n_skipped": sum(row["status"] == "skipped" for row in group_rows),
             }
         )
-        out["pass_rate_pct"] = f"{100 * out['n_passed'] / out['n_attempted']:.6g}" if out["n_attempted"] else ""
-        for metric in ["runtime_mean_s", "output_depth", "output_depth_2q", "output_gate_count", "output_gate_count_2q"]:
-            values = [value for row in successful if (value := numeric(row, metric)) is not None]
+        out["pass_rate_pct"] = (
+            f"{100 * out['n_passed'] / out['n_attempted']:.6g}"
+            if out["n_attempted"]
+            else ""
+        )
+        for metric in [
+            "runtime_mean_s",
+            "output_depth",
+            "output_depth_2q",
+            "output_gate_count",
+            "output_gate_count_2q",
+        ]:
+            values = [
+                value
+                for row in successful
+                if (value := numeric(row, metric)) is not None
+            ]
             out[f"{metric}_n"] = len(values)
             out[f"{metric}_mean"] = f"{mean(values):.6g}" if values else ""
             out[f"{metric}_median"] = f"{median(values):.6g}" if values else ""
@@ -447,21 +523,41 @@ def summarize_groups(rows: list[dict], keys: list[str], out_path: Path) -> None:
 
 
 def top_version_changes(rows: list[dict], out_path: Path) -> None:
-    metriq = [row for row in rows if row["source"] == "qiskit_metriq" and row["status"] == "passed"]
+    metriq = [
+        row
+        for row in rows
+        if row["source"] == "qiskit_metriq" and row["status"] == "passed"
+    ]
     groups: dict[tuple[str, str], list[dict]] = defaultdict(list)
     for row in metriq:
         groups[(row["sdk_version"], row["backend_or_device"])].append(row)
     summary = []
     for (version, device), group_rows in groups.items():
-        depths = [v for row in group_rows if (v := numeric(row, "output_depth")) is not None]
-        gates = [v for row in group_rows if (v := numeric(row, "output_gate_count")) is not None]
-        summary.append({"sdk_version": version, "backend_or_device": device, "n": len(group_rows), "depth_mean": mean(depths), "gate_count_mean": mean(gates)})
+        depths = [
+            v for row in group_rows if (v := numeric(row, "output_depth")) is not None
+        ]
+        gates = [
+            v
+            for row in group_rows
+            if (v := numeric(row, "output_gate_count")) is not None
+        ]
+        summary.append(
+            {
+                "sdk_version": version,
+                "backend_or_device": device,
+                "n": len(group_rows),
+                "depth_mean": mean(depths),
+                "gate_count_mean": mean(gates),
+            }
+        )
     by_device: dict[str, list[dict]] = defaultdict(list)
     for row in summary:
         by_device[row["backend_or_device"]].append(row)
     out_rows = []
     for device, device_rows in by_device.items():
-        device_rows.sort(key=lambda row: tuple(int(x) for x in row["sdk_version"].split(".")))
+        device_rows.sort(
+            key=lambda row: tuple(int(x) for x in row["sdk_version"].split("."))
+        )
         for prev, cur in zip(device_rows, device_rows[1:]):
             out_rows.append(
                 {
@@ -486,7 +582,13 @@ def validate_unique_success_keys(rows: list[dict]) -> list[dict]:
     for row in rows:
         if row["source"] != "benchpress_public" or row["status"] != "passed":
             continue
-        key = (row["source"], row["sdk"], row["sdk_version"], row["workload_id_normalized"], row["topology"])
+        key = (
+            row["source"],
+            row["sdk"],
+            row["sdk_version"],
+            row["workload_id_normalized"],
+            row["topology"],
+        )
         groups[key].append(row)
     collisions = []
     for key, vals in groups.items():
@@ -518,30 +620,64 @@ def main() -> None:
     write_csv(
         tables / "workload_id_collision_audit.csv",
         collisions,
-        ["source", "sdk", "sdk_version", "workload_id_normalized", "topology", "artifact_id", "benchmark_fullname"],
+        [
+            "source",
+            "sdk",
+            "sdk_version",
+            "workload_id_normalized",
+            "topology",
+            "artifact_id",
+            "benchmark_fullname",
+        ],
     )
     if collisions:
-        raise SystemExit(f"Workload-ID collision audit failed with {len(collisions)} rows")
+        raise SystemExit(
+            f"Workload-ID collision audit failed with {len(collisions)} rows"
+        )
 
     summarize_groups(rows, ["source"], tables / "coverage_by_source.csv")
-    summarize_groups(rows, ["source", "sdk", "sdk_version"], tables / "coverage_by_sdk_version.csv")
-    summarize_groups(rows, ["source", "benchmark_suite", "benchmark_family"], tables / "coverage_by_family.csv")
+    summarize_groups(
+        rows, ["source", "sdk", "sdk_version"], tables / "coverage_by_sdk_version.csv"
+    )
+    summarize_groups(
+        rows,
+        ["source", "benchmark_suite", "benchmark_family"],
+        tables / "coverage_by_family.csv",
+    )
     summarize_groups(rows, ["source", "topology"], tables / "coverage_by_topology.csv")
-    summarize_groups(rows, ["source", "backend_or_device"], tables / "coverage_by_backend_or_device.csv")
+    summarize_groups(
+        rows,
+        ["source", "backend_or_device"],
+        tables / "coverage_by_backend_or_device.csv",
+    )
     top_version_changes(rows, tables / "qiskit_metriq_version_deltas.csv")
 
     summary = {
         "rows": len(rows),
         "benchpress_attempt_rows": len(benchpress_rows),
-        "benchpress_passed_rows": sum(row["source"] == "benchpress_public" and row["status"] == "passed" for row in rows),
-        "benchpress_failed_rows": sum(row["source"] == "benchpress_public" and row["status"] == "failed" for row in rows),
-        "benchpress_xfailed_rows": sum(row["source"] == "benchpress_public" and row["status"] == "xfailed" for row in rows),
-        "benchpress_skipped_rows": sum(row["source"] == "benchpress_public" and row["status"] == "skipped" for row in rows),
+        "benchpress_passed_rows": sum(
+            row["source"] == "benchpress_public" and row["status"] == "passed"
+            for row in rows
+        ),
+        "benchpress_failed_rows": sum(
+            row["source"] == "benchpress_public" and row["status"] == "failed"
+            for row in rows
+        ),
+        "benchpress_xfailed_rows": sum(
+            row["source"] == "benchpress_public" and row["status"] == "xfailed"
+            for row in rows
+        ),
+        "benchpress_skipped_rows": sum(
+            row["source"] == "benchpress_public" and row["status"] == "skipped"
+            for row in rows
+        ),
         "qiskit_metriq_rows": sum(row["source"] == "qiskit_metriq" for row in rows),
         "workload_id_collision_rows": len(collisions),
         "source_commits": SOURCE_COMMITS,
     }
-    (results / "unified_compiler_artifacts_summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
+    (results / "unified_compiler_artifacts_summary.json").write_text(
+        json.dumps(summary, indent=2), encoding="utf-8"
+    )
     print(json.dumps(summary, indent=2))
 
 

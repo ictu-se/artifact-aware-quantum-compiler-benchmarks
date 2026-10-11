@@ -37,7 +37,7 @@
     "benchpress_top_runtime_outliers.csv": "e3c82464eb8fad74a8e2ac7556f82870e25ba1e2c8debb1eeee262168a4da239",
     "benchpress_top_skew_outliers.csv": "9b214acc9a8e985a04cf47410aeaa9f94472916347c32a504bc5ace144321fa2",
     "benchpress_topology_distribution.csv": "99e0a12b7d0158f40f5e957f42cf4e2df7426edd2cbb3d500c36e26c6b91928f",
-    "benchpress_topology_penalty_by_family.csv": "19a5ef4b6e9a3fbfb34efac0076299e6f8c055004f595358a1423c5e3a07ac38",
+    "benchpress_topology_penalty_by_family.csv": "f14b26e9e234875a97f2748159a35956762ca9b5f15b3c26e38fd1f2b430e179",
     "benchpress_topology_penalty_cells.csv": "8d9e7b63b97c97fd2df10227e9cc640fa5d912cf84908f6a0585b2066bd7c904",
     "coverage_by_backend_or_device.csv": "90c1a4aae3fa5df986cb6a049771b10d44483337b83e05d4f1a12d218ef8489b",
     "coverage_by_family.csv": "de1e27cd8bab98fc817ea210067b0fdc5223af9147b3247d07e69d5c3b279bcc",

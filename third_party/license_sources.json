@@ -1,0 +1,17 @@
+[
+  {
+    "source": "benchpress",
+    "url": "https://raw.githubusercontent.com/Qiskit/benchpress/b695f30e83a32bac05b9b4d8e98d37ba9aae5236/LICENSE.txt",
+    "sha256": "217ac15dbcda2782e004f5152886d847988c6367aaa0c4fc8c355363c21bd224"
+  },
+  {
+    "source": "qiskit_metriq",
+    "url": "https://raw.githubusercontent.com/qiskit-community/qiskit-metriq/a79d8a66d19e8b7a4e5035f32004017252c06cfa/LICENSE",
+    "sha256": "42dae0f503013a4c77e70184d76057d971bc9c1373ce123823a2f6b8d89aceec"
+  },
+  {
+    "source": "qasmbench",
+    "url": "https://raw.githubusercontent.com/pnnl/QASMBench/357b942396d5c2b7cbc1c229c585a6ef5ccaebac/LICENSE",
+    "sha256": "3ba843379e9d16d4cc80e971f530c20053afbbb8da94de3c5e945d3212d91cd3"
+  }
+]

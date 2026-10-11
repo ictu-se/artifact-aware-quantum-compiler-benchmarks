@@ -1,0 +1,227 @@
+{
+  "status": "PASS",
+  "claims_verified": 37,
+  "claims": [
+    {
+      "claim": "outcome_records",
+      "value": 15652,
+      "evidence": "results/unified_compiler_artifacts.csv"
+    },
+    {
+      "claim": "successful_records",
+      "value": 15318,
+      "evidence": "results/unified_compiler_artifacts.csv"
+    },
+    {
+      "claim": "endpoint_cells",
+      "value": 1032,
+      "evidence": "tables/benchpress_qiskit_first_last_deltas.csv"
+    },
+    {
+      "claim": "logical_workload_clusters",
+      "value": 363,
+      "evidence": "tables/benchpress_qiskit_first_last_deltas.csv"
+    },
+    {
+      "claim": "runtime_delta_pct_eligible_n",
+      "value": 1032,
+      "evidence": "tables/benchpress_qiskit_first_last_deltas.csv"
+    },
+    {
+      "claim": "runtime_delta_pct_mean_reduction",
+      "value": 46.15204377268132,
+      "evidence": "tables/benchpress_qiskit_first_last_deltas.csv"
+    },
+    {
+      "claim": "runtime_delta_pct_improved_tied_regressed",
+      "value": [
+        943,
+        0,
+        89
+      ],
+      "evidence": "tables/benchpress_qiskit_first_last_deltas.csv"
+    },
+    {
+      "claim": "depth_2q_delta_pct_eligible_n",
+      "value": 1016,
+      "evidence": "tables/benchpress_qiskit_first_last_deltas.csv"
+    },
+    {
+      "claim": "depth_2q_delta_pct_mean_reduction",
+      "value": -0.39288183480523087,
+      "evidence": "tables/benchpress_qiskit_first_last_deltas.csv"
+    },
+    {
+      "claim": "depth_2q_delta_pct_improved_tied_regressed",
+      "value": [
+        345,
+        390,
+        281
+      ],
+      "evidence": "tables/benchpress_qiskit_first_last_deltas.csv"
+    },
+    {
+      "claim": "gate_2q_delta_pct_eligible_n",
+      "value": 1016,
+      "evidence": "tables/benchpress_qiskit_first_last_deltas.csv"
+    },
+    {
+      "claim": "gate_2q_delta_pct_mean_reduction",
+      "value": -2.049573971684557,
+      "evidence": "tables/benchpress_qiskit_first_last_deltas.csv"
+    },
+    {
+      "claim": "gate_2q_delta_pct_improved_tied_regressed",
+      "value": [
+        271,
+        391,
+        354
+      ],
+      "evidence": "tables/benchpress_qiskit_first_last_deltas.csv"
+    },
+    {
+      "claim": "historical_depth_delta_pct_mean_reduction",
+      "value": 66.67186822060503,
+      "evidence": "tables/metriq_seed_level_first_last_deltas.csv"
+    },
+    {
+      "claim": "historical_gate_count_delta_pct_mean_reduction",
+      "value": 74.01434736978567,
+      "evidence": "tables/metriq_seed_level_first_last_deltas.csv"
+    },
+    {
+      "claim": "historical_shared_seed_clusters",
+      "value": 100,
+      "evidence": "tables/metriq_seed_level_first_last_deltas.csv"
+    },
+    {
+      "claim": "top40_groups",
+      "value": 21,
+      "evidence": "results/unified_compiler_artifacts.csv"
+    },
+    {
+      "claim": "top20_all_TKET_2.6.0",
+      "value": true,
+      "evidence": "results/unified_compiler_artifacts.csv"
+    },
+    {
+      "claim": "TKET_runtime_median_s",
+      "value": 2.1297736870037625,
+      "evidence": "results/unified_compiler_artifacts.csv"
+    },
+    {
+      "claim": "TKET_runtime_mean_s",
+      "value": 70.07171615067196,
+      "evidence": "results/unified_compiler_artifacts.csv"
+    },
+    {
+      "claim": "topology_cells",
+      "value": 7977,
+      "evidence": "tables/benchpress_topology_penalty_cells.csv"
+    },
+    {
+      "claim": "heavy-hex_eligible_depth_ratios",
+      "value": 2623,
+      "evidence": "tables/benchpress_topology_penalty_cells.csv"
+    },
+    {
+      "claim": "linear_eligible_depth_ratios",
+      "value": 2623,
+      "evidence": "tables/benchpress_topology_penalty_cells.csv"
+    },
+    {
+      "claim": "square_eligible_depth_ratios",
+      "value": 2625,
+      "evidence": "tables/benchpress_topology_penalty_cells.csv"
+    },
+    {
+      "claim": "cross_sdk_observations",
+      "value": 2784,
+      "evidence": "tables/benchpress_cross_sdk_matched_cells.csv"
+    },
+    {
+      "claim": "qiskit 2.5.0rc1_cells",
+      "value": 928,
+      "evidence": "tables/benchpress_cross_sdk_matched_cells.csv"
+    },
+    {
+      "claim": "qiskit 2.5.0rc1_depth_support",
+      "value": 917,
+      "evidence": "tables/benchpress_cross_sdk_matched_cells.csv"
+    },
+    {
+      "claim": "qpanda 0.3.2_cells",
+      "value": 928,
+      "evidence": "tables/benchpress_cross_sdk_matched_cells.csv"
+    },
+    {
+      "claim": "qpanda 0.3.2_depth_support",
+      "value": 917,
+      "evidence": "tables/benchpress_cross_sdk_matched_cells.csv"
+    },
+    {
+      "claim": "tket 2.6.0_cells",
+      "value": 928,
+      "evidence": "tables/benchpress_cross_sdk_matched_cells.csv"
+    },
+    {
+      "claim": "tket 2.6.0_depth_support",
+      "value": 917,
+      "evidence": "tables/benchpress_cross_sdk_matched_cells.csv"
+    },
+    {
+      "claim": "analytical_figures",
+      "value": 8,
+      "evidence": "full_manuscript_assets/"
+    },
+    {
+      "claim": "generated_numerical_tables",
+      "value": 13,
+      "evidence": "full_manuscript_assets/"
+    },
+    {
+      "claim": "empirical_workflow_figure",
+      "value": true,
+      "evidence": "full_manuscript_assets/workflow_evidence.pdf"
+    },
+    {
+      "claim": "workflow_input_files",
+      "value": 300,
+      "evidence": "data/source_file_manifest.csv"
+    },
+    {
+      "claim": "workflow_endpoint_support",
+      "value": 1032,
+      "evidence": "tables/benchpress_qiskit_first_last_deltas.csv"
+    },
+    {
+      "claim": "workflow_enrichment_partition",
+      "value": 12318,
+      "evidence": "tables/qasmbench_enrichment_summary.csv"
+    }
+  ],
+  "asset_sha256": {
+    "figure_01.pdf": "dec1f4ce75c586e46e6290b6d625af0a21ded084fa86b251e50bee318275b845",
+    "figure_02.pdf": "87d311330d5fac949e84fa95aaa3403fb9aaf8a978f8405a96d8349695db49ff",
+    "figure_03.pdf": "afdf24dd231cd0632c821c632f22879bd4e046d164fe4e6f035250f6d44efaa1",
+    "figure_04.pdf": "c5a2b3cffceec9b489f65e3db61ff83943910b5d6647eff0383a9d52f80d2a91",
+    "figure_05.pdf": "5e419319b016ce3835233db64014f66ef93e8edf961d7711ed5448c99f29d74d",
+    "figure_06.pdf": "c2b4d4077878721c3ae2e7ecec5d98caeb468a0581d13348b9b69ded9c100e48",
+    "figure_07.pdf": "62e9d58e947d7e338f2fec2694e282b58e4f15dda1d3cf8156aaf3e470b3d5c6",
+    "figure_08.pdf": "a88e9ecc16ab53402aaa3b019257ee1639a856223052cf46f20c52d36763da5e",
+    "table_03.tex": "6bf23932442e2e27bd32a4d686f5e264540333ebe939636024b87dd6b7191d2f",
+    "table_04.tex": "73e08b8017e46a7972872202b8582c5afe0354be9b6e20f3e9f69d881c6808e5",
+    "table_05.tex": "8dca9872abfcae34e86df3519efd708f60fb60970e65be91cca70e1e447f1633",
+    "table_06.tex": "042da441ef1d4ed29d5900a0d4e1450c75ee4cb0fb314c0b2b9ce6378362419e",
+    "table_07.tex": "8357f0d5733c4bb9fbae6b44a8a2fea05e1fc620a39827a58ba6d6e20113dde7",
+    "table_08.tex": "a66ecb33a077ce31590005c9755f8d7b1dbe4f6329fb9aa13335efdbd160b117",
+    "table_09.tex": "cee039d0c3b34137ba776baa7dc4ed93836af3bce5a6104c4ad0b8fa3a7fd43e",
+    "table_10.tex": "ae7258ff0c21ec7279f5394aafed29cbba97c13464861fd58e5c5b5898e6ec46",
+    "table_11.tex": "eed0c306007fc58058674f80f09f37c2823f3e01a97bbe0d95cfacc4e71f297e",
+    "table_12.tex": "4574b0a1c9c8305ded1f2fd537a43bf23c059e2c49c224f24193f5ce609df4ba",
+    "table_13.tex": "0a95e07de89a37a2d220b419adce91a14f419b2ae509ff7c07dd0975535916f8",
+    "table_cross.tex": "324ba5868b9a6b22ee1c8f16490f083501bc5f5985cb5abab3fe9552325636ed",
+    "table_paired.tex": "a96315ad9e63f622f5928b1d8d189a45d724293359bbbccd2c09e5b07058c816",
+    "workflow_evidence.pdf": "20b6d84cf802998ff3579c85e27a944df1bdccd7d0d8c8a0c0b2a71724f70121"
+  }
+}

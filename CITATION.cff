@@ -2,8 +2,8 @@ cff-version: 1.2.0
 message: "Please cite the accompanying manuscript and upstream benchmark resources."
 title: "Artifact-Aware Performance Analysis of Quantum Compiler Benchmarks Across SDK Versions and Topologies"
 type: software
-version: 1.0.0
-date-released: 2026-10-05
+version: 1.1.0
+date-released: 2026-10-11
 authors:
   - family-names: Nguyen
     given-names: The-Vinh

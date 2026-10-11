@@ -21,7 +21,14 @@ QASMBENCH = ROOT / "data/qasmbench"
 UNIFIED = PAPER / "results/unified_compiler_artifacts.csv"
 
 
-TOPOLOGY_SUFFIXES = ("all-to-all", "heavy-hex", "square", "linear", "device", "unspecified")
+TOPOLOGY_SUFFIXES = (
+    "all-to-all",
+    "heavy-hex",
+    "square",
+    "linear",
+    "device",
+    "unspecified",
+)
 
 
 def read_csv(path: Path) -> list[dict]:
@@ -100,7 +107,9 @@ def parse_qasm(path: Path) -> dict:
             circuit = qasm2.loads(text)
             result["qasm_qubits"] = str(circuit.num_qubits)
             result["qasm_ops_approx"] = str(len(circuit.data))
-            result["qasm_two_qubit_ops_approx"] = str(sum(len(item.qubits) == 2 for item in circuit.data))
+            result["qasm_two_qubit_ops_approx"] = str(
+                sum(len(item.qubits) == 2 for item in circuit.data)
+            )
             result["parser_status"] = "qiskit_qasm2"
         except Exception as exc:
             result["parser_error"] = str(exc)[:500]
@@ -153,12 +162,15 @@ def build_key_index(inventory: list[dict]) -> tuple[dict[str, dict], set[str]]:
     return unique, ambiguous
 
 
-def enrich_benchpress(inventory: list[dict]) -> tuple[list[dict], list[dict], list[dict]]:
+def enrich_benchpress(
+    inventory: list[dict],
+) -> tuple[list[dict], list[dict], list[dict]]:
     unique, ambiguous = build_key_index(inventory)
     rows = [
         row
         for row in read_csv(UNIFIED)
-        if row["source"] == "benchpress_public" and row.get("status", "passed") == "passed"
+        if row["source"] == "benchpress_public"
+        and row.get("status", "passed") == "passed"
     ]
     enriched: list[dict] = []
     status_counts = Counter()
@@ -195,7 +207,9 @@ def enrich_benchpress(inventory: list[dict]) -> tuple[list[dict], list[dict], li
                 "parser_status": match.get("parser_status", ""),
             }
         )
-    family_counts: dict[tuple[str, str], int] = Counter((row["benchmark_family"], row["match_status"]) for row in enriched)
+    family_counts: dict[tuple[str, str], int] = Counter(
+        (row["benchmark_family"], row["match_status"]) for row in enriched
+    )
     family_rows = [
         {"benchmark_family": family, "match_status": status, "rows": str(count)}
         for (family, status), count in sorted(family_counts.items())
@@ -225,7 +239,9 @@ def main() -> None:
         "benchpress_enriched_rows": len(enriched),
         "summary": summary_rows[-10:],
     }
-    (PAPER / "results/qasmbench_enrichment_summary.json").write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    (PAPER / "results/qasmbench_enrichment_summary.json").write_text(
+        json.dumps(payload, indent=2), encoding="utf-8"
+    )
     print(json.dumps(payload, indent=2))
 
 

@@ -1,14 +1,31 @@
 {
   "status": "PASS",
-  "tested_commit": "3f97ef8a966aaf8ef6f9c1bc2e7de6c77cebbcb5",
-  "fresh_python_environment": "3.11.15",
-  "source_acquisition": "All 300 upstream originals downloaded and hash-verified; final clean clone used a verified cache of those downloads.",
-  "identical_regenerated_file_counts": {
-    "tables": 39,
-    "results": 1,
-    "manuscript_assets": 9
+  "baseline_commit": "85e08aefb2b16457304e44745225578acd57d9ef",
+  "python": "3.11.15",
+  "input_acquisition": "Fresh checkout and fresh Python 3.11 environment; 300 inputs supplied from a SHA-256-verified cache.",
+  "canonical_analysis_identical_regenerated_files": 40,
+  "previous_repository_byte_identical_files": 39,
+  "previous_repository_existing_values_unchanged": true,
+  "added_metric_eligibility_columns": {
+    "tables/benchpress_topology_penalty_by_family.csv": [
+      "runtime_valid_n",
+      "depth_valid_n",
+      "gate_valid_n"
+    ]
   },
-  "scientific_checks_passed": 11,
-  "source_zip_build": "PASS; extracted package builds a 22-page PDF with identical page text.",
-  "pdf_sha256": "694f11206117238376c200af1f24aef581b479ba8f34a5a747230325f249dd1d"
+  "empirical_figures": 9,
+  "generated_numerical_tables": 13,
+  "scientific_checks": 11,
+  "claim_and_asset_checks": 37,
+  "figure_sha256": {
+    "figure_01.pdf": "dec1f4ce75c586e46e6290b6d625af0a21ded084fa86b251e50bee318275b845",
+    "figure_02.pdf": "87d311330d5fac949e84fa95aaa3403fb9aaf8a978f8405a96d8349695db49ff",
+    "figure_03.pdf": "afdf24dd231cd0632c821c632f22879bd4e046d164fe4e6f035250f6d44efaa1",
+    "figure_04.pdf": "c5a2b3cffceec9b489f65e3db61ff83943910b5d6647eff0383a9d52f80d2a91",
+    "figure_05.pdf": "5e419319b016ce3835233db64014f66ef93e8edf961d7711ed5448c99f29d74d",
+    "figure_06.pdf": "c2b4d4077878721c3ae2e7ecec5d98caeb468a0581d13348b9b69ded9c100e48",
+    "figure_07.pdf": "62e9d58e947d7e338f2fec2694e282b58e4f15dda1d3cf8156aaf3e470b3d5c6",
+    "figure_08.pdf": "a88e9ecc16ab53402aaa3b019257ee1639a856223052cf46f20c52d36763da5e",
+    "workflow_evidence.pdf": "20b6d84cf802998ff3579c85e27a944df1bdccd7d0d8c8a0c0b2a71724f70121"
+  }
 }

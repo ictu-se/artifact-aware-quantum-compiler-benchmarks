@@ -11,3 +11,5 @@ data/qasmbench/
 *.synctex.gz
 verification/*.log
 .DS_Store
+
+full_manuscript_assets/*.tex
